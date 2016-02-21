@@ -34,7 +34,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.4.2
-Release:        4.10%{?dist}
+Release:        4.11%{?dist}
 Epoch:          0
 Summary:        Plexus Archiver Component
 License:        ASL 2.0
@@ -44,9 +44,9 @@ Source0:        https://github.com/sonatype/%{pkg_name}/archive/%{pkg_name}-%{ve
 BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-plexus-containers-container-default
-BuildRequires:  maven30-plexus-io
-BuildRequires:  maven30-plexus-utils
+BuildRequires:  %{?scl_prefix}plexus-containers-container-default
+BuildRequires:  %{?scl_prefix}plexus-io
+BuildRequires:  %{?scl_prefix}plexus-utils
 BuildRequires:  %{?scl_prefix_java_common}apache-commons-compress
 
 
@@ -68,19 +68,19 @@ Javadoc for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_file :%{pkg_name} plexus/archiver
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -94,6 +94,9 @@ set -e -x
 %doc LICENSE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 0:2.4.2-4.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 0:2.4.2-4.10
 - maven33 rebuild
 
