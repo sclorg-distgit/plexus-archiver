@@ -34,7 +34,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.4.2
-Release:        4.11%{?dist}
+Release:        4.12%{?dist}
 Epoch:          0
 Summary:        Plexus Archiver Component
 License:        ASL 2.0
@@ -43,7 +43,7 @@ Source0:        https://github.com/sonatype/%{pkg_name}/archive/%{pkg_name}-%{ve
 
 BuildArch:      noarch
 
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}plexus-containers-container-default
 BuildRequires:  %{?scl_prefix}plexus-io
 BuildRequires:  %{?scl_prefix}plexus-utils
@@ -94,6 +94,9 @@ set -e -x
 %doc LICENSE
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 0:2.4.2-4.12
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 0:2.4.2-4.11
 - maven33 rebuild #2
 
